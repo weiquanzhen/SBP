@@ -31,12 +31,15 @@
 		<!-- 
 			spring-boot-starter-data-jpa数据库连接的依赖：可以使用数据持久层框架 Spring Data JPA 操作数据源
 		 -->
-		<!-- <dependency>
+		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency> -->
+		</dependency>
 		
-		<!-- 提供@Date @Getter @Setter等注解 减少不必要代码 仅限于数据库的实体类使用 -->
+		<!-- 
+			提供@Date @Getter @Setter等注解 减少不必要代码,实体类都可以使用，原理是自动生成指定方法的字节码
+		 	注意：使用前 必须双击lombok.jar进行安装，否则不能使用
+		 -->
 		<!-- 详情请看 https://blog.csdn.net/weixin_40753536/article/details/81285046 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -69,10 +72,20 @@
 		    <version>1.2.15</version>
 		</dependency>
 		
-		<!-- <dependency>
+		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
-		</dependency> -->
+		</dependency>
+		
+		<!-- 
+			要想使用注解访问数据库，必须添加这个
+			版本号不能省，否则报错
+		 -->
+		<dependency>
+		    <groupId>org.apache.ibatis</groupId>
+		    <artifactId>ibatis-core</artifactId>
+		    <version>3.0</version>
+		</dependency>
 		
 	</dependencies>
 	
