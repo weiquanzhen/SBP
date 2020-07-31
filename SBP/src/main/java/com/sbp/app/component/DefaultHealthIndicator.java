@@ -3,7 +3,11 @@ package com.sbp.app.component;
 import org.springframework.boot.actuate.health.AbstractHealthIndicator;
 import org.springframework.boot.actuate.health.Health.Builder;
 import org.springframework.stereotype.Component;
-
+/**
+ * -自定义添加/actuator/health健康属性
+ * @author weiqz
+ *
+ */
 @Component // 组件注解
 public class DefaultHealthIndicator extends AbstractHealthIndicator{
 	/**
