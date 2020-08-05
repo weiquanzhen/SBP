@@ -1,6 +1,7 @@
 package com.sbp.app.controller.common;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,23 +17,21 @@ public class LoginController {
 	private LoginService service;
 	
 	@GetMapping("/login")
-	public ResponseDate login(HttpServletRequest req, User user) {
+	public ResponseDate login(HttpServletRequest req, HttpServletResponse resp, User user) {
 		ResponseDate r = new ResponseDate();
-		if(service.login(req, user)) {
-			System.out.println(req.getSession().getAttribute("user"));
-			return r;
-		}
+		service.login(req, resp, user);
+		r.setMessage("login success!");
 		return r;
 	}
 	@GetMapping("/regist")
 	public ResponseDate regist(User user) {
 		ResponseDate r = new ResponseDate();
 		if(service.regist(user)) {
-			r.setMessage("注册成功");
+			r.setMessage("regist success!");
 			return r;
 		}
 		r.setCode(1);
-		r.setMessage("注册失败，账户已存在");
+		r.setMessage("account is exists");
 		return r;
 	}
 }

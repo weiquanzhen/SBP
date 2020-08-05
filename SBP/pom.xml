@@ -87,6 +87,42 @@
 		    <version>3.0</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<!-- 
+				SpringBoot1.x默认采用Jedis作为redis客户端连接池。
+				SpringBoot2.x默认使用lettuce连接池
+				去掉lettuce，并且加上jedis的依赖包，否则都是走的lettuce客户端，有坑
+			-->
+			<exclusions>
+				<exclusion>
+					<groupId>io.lettuce</groupId>
+					<artifactId>lettuce-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- 
+			jedis的依赖包
+			jedis的客户端默认增加了pool的连接池依赖包，所以Jedis默认你配置与否都会有连接池，而lettuce则需要配置文件中配置一下
+		-->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        
+        <!-- 使用redis连接池需要引入这个依赖 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+		
 	</dependencies>
 	
 	<!-- mvn clean package 即可打包 -->

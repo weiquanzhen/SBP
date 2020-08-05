@@ -7,7 +7,7 @@ import lombok.Data;
 public class ResponseDate {
 	
 	private String message;
-	private Integer code = 200;
+	private Integer code = 0;
 	private Object data;
 	private Boolean status = true;
 	
