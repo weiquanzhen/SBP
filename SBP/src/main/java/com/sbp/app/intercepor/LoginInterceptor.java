@@ -12,6 +12,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sbp.app.entity.User;
+import com.sbp.app.service.LoginService;
 import com.sbp.app.util.RedisUtil;
 import com.sbp.app.util.SessionUtil;
 
@@ -24,7 +25,7 @@ import com.sbp.app.util.SessionUtil;
 @Component
 public class LoginInterceptor implements HandlerInterceptor{
 	@Autowired
-	private SessionUtil sessionUtil;
+	private LoginService service;
 	/**
 	 * - 访问接口之前调用这个方法，通过实现WebMvcConfigurer并在addInterceptors方法中配置拦截哪些接口
 	 */
@@ -35,7 +36,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		if(user == null) {
-			if(!sessionUtil.checkLogin(request)) {
+			if(!service.checkLogin(request)) {
 				return false;
 			}
 		}
